@@ -92,8 +92,8 @@ function player_collision() {
     for (const ennemy of ennemies) {
         var xx = ennemy.graphic.position.x + WIDTH / 2;
         var yy = ennemy.graphic.position.y + HEIGHT / 2;
-    
-        if (x == xx && y == yy)
+        console.log(x, xx, y, yy)
+        if (Math.floor(x) == Math.floor(xx) && Math.floor(y) == Math.floor(yy))
             player1.removeLife()
     }
 
