@@ -6,6 +6,13 @@ var bullet_player1_material = new THREE.MeshLambertMaterial(
     transparent: false
 });
 
+const transformAxes = (x, y) => {
+    return {
+        x : x + (WIDTH / 2),
+        y : y + (HEIGHT / 2)
+    }
+}
+
 function shoot()
 {
     if (keyboard.pressed("space") && bulletTime1 + 0.8 < clock.getElapsedTime())
@@ -16,6 +23,7 @@ function shoot()
         scene.add(bullet);
         bullet.position.x = player1.graphic.position.x + 7.5 * Math.cos(player1.direction);
         bullet.position.y = player1.graphic.position.y + 7.5 * Math.sin(player1.direction);
+        console.log(bullet.position)
         bullet.angle = player1.direction;
         player1.bullets.push(bullet);
         bulletTime1 = clock.getElapsedTime();
@@ -50,8 +58,27 @@ function bullet_collision()
             scene.remove(player1.bullets[i]);
             player1.bullets.splice(i, 1);
             i--;
+            continue;
+        }
+
+        //collision between bullet and ennemies
+        
+        for (const ennemy of ennemies)
+        {
+            // ennemy.graphic.position, transformAxes(ennemy.graphic.position.x, ennemy.graphic.position.y),
+
+            if (Math.abs(player1.bullets[i].position.x) == ennemy.graphic.position.x &&
+            Math.abs(player1.bullets[i].position.y) == ennemy.graphic.position.y)
+            {
+                scene.remove(player1.bullets[i]);
+                scene.remove(ennemy);
+                player1.bullets.splice(i, 1);
+                i--;
+                console.log('........................................')
+            }
         }
     }
+
 
 }
 
@@ -63,6 +90,8 @@ function player_collision()
 
     if ( x > WIDTH )
         player1.graphic.position.x -= x - WIDTH;
+    if ( x < 0 )
+        player1.graphic.position.x -= x;
     if ( y < 0 )
         player1.graphic.position.y -= y;
     if ( y > HEIGHT )
@@ -83,10 +112,10 @@ function player_falling()
     for (var i = 0; i < length; i++) {
         element = noGround[i];
 
-        var tileX = (element[0]) | 0;
-        var tileY = (element[1]) | 0;
-        var mtileX = (element[0] + sizeOfTileX) | 0;
-        var mtileY = (element[1] + sizeOfTileY) | 0;
+        var tileX =  element ? (element[0]) : 0;
+        var tileY = element ? (element[1]) : 0;
+        var mtileX = (tileX + sizeOfTileX) | 0;
+        var mtileY = (tileY + sizeOfTileY) | 0;
 
         if ((x > tileX)
             && (x < mtileX)
