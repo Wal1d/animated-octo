@@ -87,6 +87,4 @@ Player.prototype.move = function () {
     light1.position.y = this.position.y;
    //light1.position.z = this.graphic.position.z + 500;
 
-   console.log('player ', this)
-   console.log('enemies ', ennemies)
 };

@@ -87,14 +87,15 @@ function player_collision() {
         player1.graphic.position.y -= y - HEIGHT;
 
 
-        //collision between player and ennemie
+    //collision between player and ennemie
 
-    // for (const ennemy of ennemies) {
-
-    //     if (x == ennemy.graphic.position.x + WIDTH / 2 && y == ennemy.graphic.position.y + HEIGHT / 2)
-    //         player1.removeLife()
-           
-    // }
+    for (const ennemy of ennemies) {
+        var xx = ennemy.graphic.position.x + WIDTH / 2;
+        var yy = ennemy.graphic.position.y + HEIGHT / 2;
+    
+        if (x == xx && y == yy)
+            player1.removeLife()
+    }
 
 }
 

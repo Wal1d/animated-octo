@@ -49,7 +49,7 @@ Ennemy.prototype.move = function () {
     );
 
     this.position = moveTo;
-    console.log(player1.position.x, this.position.x)
+    // console.log(player1.position.x, this.position.x)
     if (this.axe == 0) {
         if (this.position.x > player1.position.x) {
             this.speed -=  0.05; // * this.speed 
