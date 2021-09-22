@@ -48,7 +48,7 @@ function Ground(color, size_x, size_y, nb_tile) {
     minY = -(size_y / 2);
     maxY = (size_y / 2);
 
-    noGround.push([(minX + maxX) / 2, (minY + maxY) / 2]);
+    // noGround.push([(minX + maxX) / 2, (minY + maxY) / 2]);
 
 
     for (x = minX; x <= maxX; x = x + sizeOfTileX) {
