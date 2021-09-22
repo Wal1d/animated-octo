@@ -33,3 +33,7 @@ A video game with three.js
 
 
 - [x] : As a ennemy, I want to move on one axe, AND FOLLOW THE PLAYER
+
+
+Fraustrations : 
+- J'arrive pas a resoudre le problem de positions et cela ma prit bcp de temps
